@@ -14,36 +14,39 @@ Use grep to find all instances where the upload was initiated.
 ```
 PROVIDE A SOLUTION HERE
 ```
+grep "started" transaction_data_daily_event_log_20190129.dat
 
 Once you've reviewed these results, repeat the process but this time using the -c flag to determine how many matching occurences were found.
 ```
 PROVIDE A SOLUTION HERE
 ```
-
+grep -c "started" transaction_data_daily_event_log_20190129.dat
 
 Use grep to find all instances where the upload was successful. 
 ```
 PROVIDE A SOLUTION HERE
 ```
+grep "complete" transaction_data_daily_event_log_20190129.dat
 
 Once you've reviewed these results, determine how many matching occurrences were found. This time instead of using the -c flag, pipe the result to the wc program.
 ```
 PROVIDE A SOLUTION HERE
 ```
-
+grep -c  "complete" transaction_data_daily_event_log_20190129.dat
 
 Use grep to find all instances where the upload failed. Ensure your output displays the line numbers for each match.
 
 ```
 PROVIDE A SOLUTION HERE
 ```
+grep -n "failure" transaction_data_daily_event_log_20190129.datSW
 
 Upon review, we would like to only view failures with error code SYSOFFLINE or WEAKSIGNAL.
 
 ```
 PROVIDE A SOLUTION HERE
 ```
-
+grep -i "WEAKSIGNAL\|SYSOFFLINE" transaction_data_daily_event_log_20190129.dat
 
 ## Dunder Mifflin Paper Co. Users
 
@@ -54,12 +57,13 @@ Identify users that have email addresses with six or less characters before the 
 PROVIDE A SOLUTION HERE
 ```
 
+grep -E [a-zA-Z.-]{1,6}+@ users.csv
 
 Marketing research has shown that the paper business is picking up in the academia space. Corporate has requested a list of all registered users that have an edu emaill address. Use grep to find the appropriate lines and output the results to a file called academia_users.txt.
 ```
 PROVIDE A SOLUTION HERE
 ```
-
+grep edu users.csv
 
 Ryan Howard did a poor job and used the CC field rather than the BCC field for the company's email campaign. Dwight received a tip from Jim that there is a registered user who exploided this oversight to poach clients from Dunder Mifflin Paper Co. Dwight has provided us with two pieces of information:
 1. The user registed to the service from an IPV4 ip address starting with the numbers 184. 
@@ -69,7 +73,7 @@ Use grep to identify the user with a single regex pattern.
 ```
 PROVIDE A SOLUTION HERE
 ```
-
+grep -E '(.com,184)............(38)' users.csv
 
 ## Dunder Mifflin Is Hiring
 
@@ -87,16 +91,26 @@ Each entry in the provided files will contain the following details about a pote
 
 This regex expression will ultimately be part of an automated data pipeline so we want it to be as hardened as we can reasonably make it. Write a regex expression that meets the following constraints.
 
-* Starting and ending anchors for each line.
-* Each entry will have an id of one or more digits
-* Last names must begin with an upper case letter (a-z).
-* Last names may contain any number of characters (a-z). It may also contain spaces, dashes, and hyphens.
-* First names must begin with an upper case letter (a-z).
-* First names may contain any number of characters (a-z). It may also contain spaces, dashes, and hyphens.
-* A candidate's current job title must contain the word "Software" and/or "Developer".
+* Starting and ending anchors for each line. ✓
+* Each entry will have an id of one or more digits ✓
+* Last names must begin with an upper case letter (a-z). ✓
+* Last names may contain any number of characters (a-z). It may also contain spaces, dashes, and hyphens. ✓
+* First names must begin with an upper case letter (a-z). ✓
+* First names may contain any number of characters (a-z). It may also contain spaces, dashes, and hyphens. ✓
+* A candidate's current job title must contain the word "Software" and/or "Developer". ✓
 * City must not contain any digits.
 * Each field must be separated by a tab character.
 
 ```
 PROVIDE A SOLUTION HERE
 ```
+
+grep -E '^[0-9]+\t[A-Z][a-z\-\s]*\t[A-Z][a-z\-\s]*\t[A-Za-z\s]*Developer[A-Za-z\s\t]*' candidates_1.txt
+
+grep -E '^[0-9]+\t[A-Z][a-z\-\s]*\t[A-Z][a-z\-\s]*\t[A-Za-z\s]*Software[A-Za-z\s\t]*' candidates_1.txt
+
+
+
+
+/Users/sean/labs/SQLGREPLabs/DataEngineering.Labs.grep/data
+
